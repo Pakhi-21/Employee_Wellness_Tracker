@@ -41,7 +41,7 @@ Employee Wellness Tracker
 │── src/main/java/com/company/ewt/
 │   ├── entity/        # Database entities (Employee, Survey, SurveyResponse)
 │   ├── repository/    # Database access layer (JPA Repositories)
-│   ├── service/       # Business logic (Survey, Employee, Report Services)
+│   ├── service/       # Business logic (Survey, Employee, SurveyResponse Services)
 │   ├── controller/    # REST API Controllers
 │── src/main/resources/
 │   ├── application.properties  # Database & app settings
