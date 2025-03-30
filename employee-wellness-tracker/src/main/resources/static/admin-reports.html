@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/admin-dash.css">
+    <script src="js/admin-report.js" defer></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Amaranth&family=Concert+One&family=Mochiy+Pop+One&family=Montserrat:wght@100..900&family=Pacifico&family=Permanent+Marker&family=Sixtyfour+Convergence&family=Ubuntu&display=swap');
+
+
+body {
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #157F7F;
+    color: white;
+    height: 100vh;
+    padding: 20px;
+    position: fixed;
+}
+
+.sidebar h2 {
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    margin: 10px 0;
+    text-align: left;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.sidebar ul li a:hover {
+    background-color: #23D5D5;
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 270px;
+    padding: 20px;
+    width: 100%;
+}
+
+.emp-list{
+    margin: 10px;
+    padding:10px;
+}
+
+.filters{
+    margin: 10px;
+    padding: 10px;
+    display: flex;
+
+}
+
+.filter-content{
+    margin: 5px;
+    padding: 5px;
+    color: #157F7F;
+    font-weight:600;
+}
+
+select{
+    padding: 5px;
+    margin: 5px;
+    border-radius: 2px;
+}
+
+h1 {
+    color: #333;
+    margin: 10px;
+    padding: 10px;
+}
+
+h2{
+    color: #23D5D5;   
+}
+
+button {
+    background-color:#23D5D5;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #39AAAA;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 8px;
+    border-bottom: 2px solid #ddd;
+    border-radius: 5px;
+    text-align: left;
+}
+
+
+/* for forms */
+
+#editEmployeeForm, #employeeForm  {
+    display:none;
+    padding: 10px;
+    margin: 10px;
+}
+
+#editEmployeeForm.show {
+  display: block;
+}
+
+
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <h2>Admin Panel</h2>
+            <ul>
+                <li><a href="admin-dashboard.html">🏠 Home</a></li>
+                <li><a href="admin-dashboard.html">👥 Employee List</a></li>
+                <li><a href="admin-survey.html">📋 Manage Surveys</a></li>
+                <li><a href="admin-reports.html">📊 Reports</a></li>
+                <li><a href="#" onclick="logout()">🚪 Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1> Employee Survey Reports</h1>
+
+            <!-- Filters -->
+            <div class="filters">
+                <div class="filter-content">
+                <label for="departmentFilter">Filter by Department:</label>
+                <select id="departmentFilter">
+                    <option value="">Select</option>
+                    <option value="HR">HR</option>
+                    <option value="IT">IT</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Finance">Finance</option>
+                </select>
+                 </div>
+
+                <div class="filter-content">
+                <label for="locationFilter">Filter by Location:</label>
+                <select id="locationFilter">
+                    <option value="">Select</option>
+                    <option value="Indore">Indore</option>
+                    <option value="Raipur">Raipur</option>
+                    <option value="Bhopal">Bhopal</option>
+                </select>
+                </div>
+            </div>
+
+            <!-- Employee List -->
+            <div class="emp-list">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Employee Name</th>
+                            <th>Email</th>
+                            <th>Department</th>
+                            <th>Location</th>
+                            <th>View Report</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employeeTableBody">
+                        <!-- Employee rows will be inserted here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
