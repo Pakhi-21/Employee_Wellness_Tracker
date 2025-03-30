@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/admin/surveys")
-@CrossOrigin(origins = "http://localhost:3000")
 public class SurveyController {
     @Autowired
     private SurveyService surveyService;

@@ -1,5 +1,7 @@
 package com.company.ewt.controller;
 
+import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,24 @@ public class SurveyResponseController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Survey response not found.");
         }
     }
+
+    //for updation checking
+    @GetMapping("check/{responseId}")
+    public ResponseEntity<?> checkEditPermission(@PathVariable Long responseId) {
+    try {
+        SurveyResponse response = responseService.getSurveyResponseById(responseId);
+
+        // Check if 24 hours have passed
+        if (response.getSubmittedAt().plusHours(24).isBefore(LocalDateTime.now())) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Collections.singletonMap("message", "Editing time limit exceeded (24 hours)."));
+        }
+
+        return ResponseEntity.ok(response);
+    } catch (RuntimeException e) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.singletonMap("message", e.getMessage()));
+    }
+   }
 
 
     @PutMapping("/{responseId}")

@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.company.ewt.dto.EmployeeWellnessReportDTO;
+import com.company.ewt.dto.SurveyScoreDTO;
 import com.company.ewt.entity.Employee;
 import com.company.ewt.entity.Survey;
 import com.company.ewt.entity.SurveyResponse;
@@ -15,6 +17,7 @@ import com.company.ewt.repository.SurveyResponseRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class SurveyResponseService {
@@ -26,6 +29,29 @@ public class SurveyResponseService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+
+    private double calculateWellnessScore(String responses) {
+        if (responses == null || responses.trim().isEmpty()) {
+            return 0.0;
+        }
+        
+        // Assuming responses are stored as comma-separated values "5,3,4,2"
+        String[] responseArray = responses.split(",");
+        double totalScore = 0.0;
+        int count = 0;
+    
+        for (String response : responseArray) {
+            try {
+                totalScore += Double.parseDouble(response.trim());
+                count++;
+            } catch (NumberFormatException e) {
+                // Ignore invalid values
+            }
+        }
+    
+        return count > 0 ? totalScore / count : 0.0; // Calculate average score
+    }
+
 
     public SurveyResponse submitResponse(Long employeeId, Long surveyId, String responses) {
         Employee employee = employeeRepository.findById(employeeId).orElseThrow(() -> new RuntimeException("Employee not found"));
@@ -45,6 +71,8 @@ public class SurveyResponseService {
         response.setSurvey(survey);
         response.setResponses(responses);
         response.setSubmittedAt(LocalDateTime.now());
+        double wellnessScore = calculateWellnessScore(responses); // You need to implement this method
+        response.setWellnessScore(wellnessScore);
 
         return responseRepository.save(response);
     }
@@ -95,5 +123,35 @@ public class SurveyResponseService {
             return "Survey response not found.";
         }
        
+    }
+
+
+    //for report 
+    public EmployeeWellnessReportDTO getEmployeeWellnessReport(Long employeeId) {
+        Employee employee = employeeRepository.findById(employeeId)
+                .orElseThrow(() -> new RuntimeException("Employee not found"));
+
+        List<SurveyResponse> responses = responseRepository.findResponsesByEmployee(employeeId);
+
+        List<SurveyScoreDTO> surveyScores = responses.stream()
+        .map(r -> new SurveyScoreDTO(
+                r.getSurvey().getTitle(),
+                (r.getWellnessScore() != null) ? r.getWellnessScore() : 0.0,
+                r.getSubmittedAt()
+        ))
+        .collect(Collectors.toList());
+
+        Double overallWellnessScore = surveyScores.stream()
+                .mapToDouble(SurveyScoreDTO::getWellnessScore)
+                .average()
+                .orElse(0.0);
+
+        return new EmployeeWellnessReportDTO(
+                employee.getId(),
+                employee.getName(),
+                employee.getDepartment(),
+                surveyScores,
+                overallWellnessScore
+        );
     }
 }

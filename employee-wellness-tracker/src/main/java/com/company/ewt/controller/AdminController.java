@@ -24,7 +24,7 @@ public class AdminController {
         return employeeService.getAllEmployees();
     }
 
-    // Get employee by ID
+    // get employee by ID
     @GetMapping("/employees/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
         Employee employee = employeeService.getEmployeeById(id);
@@ -52,7 +52,7 @@ public class AdminController {
         return ResponseEntity.ok(Map.of("message", "Employee deleted successfully"));
     }
 
-    // Promote an employee to Admin
+    // Promote an employee to admin
     @PutMapping("/employees/{id}/promote")
     public ResponseEntity<Employee> promoteToAdmin(@PathVariable Long id) {
         Employee promotedEmployee = employeeService.promoteToAdmin(id);
