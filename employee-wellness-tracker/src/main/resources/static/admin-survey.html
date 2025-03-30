@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Surveys</title>
+    <link rel="stylesheet" href="css/admin-dash.css">
+    <script src="js/admin-surveys.js" defer></script>
+
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h2>Admin Panel</h2>
+            <ul>
+                <li><a href="admin-dashboard.html">🏠 Home</a></li>
+                <li><a href="admin-dashboard.html">👥 Employee List</a></li>
+                <li><a href="admin-survey.html">📋 Manage Surveys</a></li>
+                <li><a href="admin-reports.html">📊 Reports</a></li>
+                <li><a href="#" onclick="logout()">🚪 Logout</a></li>
+            </ul>
+        </nav>
+
+        <div class="main-content">
+            <h1>Manage Surveys</h1>
+            <!-- <button id="addSurveyBtn">+ Add Survey</button> -->
+            <div class="emp-list" >
+            <button id="openSurveyForm">+ Create Survey</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="survey-table-body">
+                    <!-- Surveys will be dynamically loaded here -->
+                </tbody>
+            </table>
+            </div>
+        </div>
+
+        
+    </div>
+</body>
+</html>
+
+
