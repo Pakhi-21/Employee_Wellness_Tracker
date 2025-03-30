@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/admin-dash.css">
+    <script src="js/admin-dash.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <h2>Admin Panel</h2>
+
+            <ul>
+                <li><a href="admin-dashboard.html">🏠 Home</a></li>
+                <li><a href="admin-dashboard.html">👥 Employee List</a></li>
+                <li><a href="admin-survey.html">📋 Manage Surveys</a></li>
+                <li><a href="admin-reports.html">📊 Reports</a></li>
+                <li><a href="#" onclick="logout()">🚪 Logout</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1>Admin Dashboard</h1>
+            <div class="emp-list">  
+            <h2>Employee List</h2>
+            <button id="toggle">+ Add Employee</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Location</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="employee-table-body">
+                    <!-- Employees will be loaded here dynamically -->
+                </tbody>
+            </table>
+            </div>
+            
+
+            <!-- Employee Forms -->
+            <div id="employeeForm">
+                <h2>Register Employee</h2>
+                <form id="addEmployeeForm">
+                    <label>Name:</label>
+                    <input type="text" id="empName" placeholder="Name" required>
+                    <label> Email:</label>
+                    <input type="email" id="empEmail" placeholder="Email" required>
+                    <label> Password:</label>
+                    <input type="password" id="empPass" placeholder="Password" required>
+                    <label> Department:</label>
+                    <input type="text" id="empDept" placeholder="Department" required>
+                    <label> Location:</label>
+                    <input type="text" id="empLocation" placeholder="Location" required>
+                    <button type="submit">Add</button>
+                </form>
+            </div>
+
+
+            <div id="editEmployeeForm">
+                <h2>Edit Employee</h2>
+                <form >
+                    <input type="hidden" id="editId">
+                    <label>Name:</label>
+                    <input type="text" id="editName" required>
+                    <label>Email:</label>
+                    <input type="email" id="editEmail" required>
+                    <label>Department:</label>
+                    <input type="text" id="editDepartment" required>
+                    <label>Location:</label>
+                    <input type="text" id="editLocation" required>
+                    <button id="update" type="submit">Update</button>
+                    <button id="cancel" type="button">Cancel</button>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+</body>
+</html>
