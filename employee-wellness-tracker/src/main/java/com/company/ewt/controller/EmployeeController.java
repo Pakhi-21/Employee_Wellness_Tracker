@@ -10,7 +10,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/employees")
-@CrossOrigin(origins = "http://localhost:3000")
 public class EmployeeController {
 
     @Autowired
@@ -21,7 +20,7 @@ public class EmployeeController {
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
         Employee employee = employeeService.getEmployeeById(id);
         if (employee == null) {
-            return ResponseEntity.notFound().build(); // Returns 404 if employee is not found
+            return ResponseEntity.notFound().build(); 
         }
         return ResponseEntity.ok(employee);
     }

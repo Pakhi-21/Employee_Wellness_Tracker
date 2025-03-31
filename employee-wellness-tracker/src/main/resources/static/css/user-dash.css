@@ -1,3 +1,4 @@
+/* Google font style */
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Amaranth&family=Concert+One&family=Mochiy+Pop+One&family=Montserrat:wght@100..900&family=Pacifico&family=Permanent+Marker&family=Sixtyfour+Convergence&family=Ubuntu&display=swap');
 
 
@@ -27,11 +28,27 @@ html, body {
     position: fixed;
     left: 0;
     top: 0;
+    transition: transform 0.3s ease; /* Add smooth transition for sidebar */
+    z-index: 1000;
+}
+
+/* Mobile menu toggle - hidden by default */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
 }
 
 .sidebar h2 {
     text-align: center;
     color: #23D5D5;
+    margin-bottom: 20px;
 }
 
 .sidebar ul {
@@ -61,8 +78,7 @@ html, body {
 .content {
     margin-left: 250px; 
     padding: 20px;
-    width: 100vw; 
-    max-width: calc(100vw - 250px); 
+    width: calc(100vw - 250px); 
 }
 
 .container{
@@ -126,4 +142,62 @@ h2{
     height: 2px;
     background-color: #157F7F;
     margin: 20px auto;
+}
+
+/* Responsive Design*/
+
+/* Large tablets and small desktops */
+@media screen and (max-width: 1024px) {
+    .survey-card {
+        width: calc(33.333% - 40px);
+    }
+}
+
+/* Tablets */
+@media screen and (max-width: 768px) {
+    /* Show menu toggle button */
+    .menu-toggle {
+        display: block;
+    }
+    
+    .sidebar {
+        transform: translateX(-250px);
+    }
+    
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    
+    .content {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .survey-card {
+        width: calc(50% - 40px);
+    }
+}
+
+/* Mobile phones */
+@media screen and (max-width: 576px) {
+
+    .survey-card {
+        width: 100%;
+        margin: 10px 0;
+    }
+    
+    .container {
+        padding: 5px;
+        margin: 5px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    h2 {
+        font-size: 20px;
+    }
 }

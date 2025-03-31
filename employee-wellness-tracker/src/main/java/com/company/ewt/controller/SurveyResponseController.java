@@ -26,17 +26,20 @@ import com.company.ewt.service.SurveyResponseService;
 public class SurveyResponseController {
     @Autowired
     private SurveyResponseService responseService;
-
+    
+    // post api for submiting response
     @PostMapping("/submit")
     public ResponseEntity<SurveyResponse> submitResponse(@RequestBody SurveyResponseRequest request) {
     return ResponseEntity.ok(responseService.submitResponse(request.getEmployeeId(), request.getSurveyId(), request.getResponses()));
     }
-
+    
+    // get user submit reponse
     @GetMapping("/employee/{employeeId}")
     public ResponseEntity<List<SurveyResponse>> getEmployeeResponses(@PathVariable Long employeeId) {
         return ResponseEntity.ok(responseService.getEmployeeResponses(employeeId));
     }
-
+    
+    //get response from id
     @GetMapping("/{responseId}")
     public ResponseEntity<?> getSurveyResponseById(@PathVariable Long responseId) {
         SurveyResponse response = responseService.getSurveyResponseById(responseId);
@@ -66,12 +69,13 @@ public class SurveyResponseController {
     }
    }
 
-
+    // for updating submit response
     @PutMapping("/{responseId}")
     public ResponseEntity<SurveyResponse> updateResponse(@PathVariable Long responseId, @RequestBody SurveyResponseRequest newResponses) {
         return ResponseEntity.ok(responseService.updateResponse(responseId, newResponses.getResponses()));
     }
-
+    
+    //delete response in specific time
     @DeleteMapping("/{responseId}")
     public ResponseEntity<String> deleteResponse(@PathVariable Long responseId) {
         String result = responseService.deleteResponse(responseId);

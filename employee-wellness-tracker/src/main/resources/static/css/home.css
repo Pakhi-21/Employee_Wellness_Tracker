@@ -85,6 +85,7 @@ button {
     max-width: 500px;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;

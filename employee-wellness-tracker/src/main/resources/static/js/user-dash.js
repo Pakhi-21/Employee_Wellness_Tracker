@@ -3,15 +3,50 @@ const API_BASE_URL = "http://localhost:8080/api";
 // Get user ID from session storage
 const userId = sessionStorage.getItem("userId");
 
-        // load active or past survey 
+    // load active or past survey 
     document.addEventListener("DOMContentLoaded", () => {
             fetchActiveSurveys();
             fetchPastSurveys();
+
+            // Setup sidebar toggling for responsive design
+            setupResponsiveNav();
         });
 
 
-        //Fetch and display active surveys from the server.  
-
+    // Set up responsive navigation for mobile devices
+    function setupResponsiveNav() {
+        const menuToggle = document.getElementById("menu-toggle");
+        const sidebar = document.querySelector(".sidebar");
+        const content = document.querySelector(".content");
+        
+        // Only add event listeners if menu toggle exists
+        if (menuToggle) {
+            // Toggle sidebar when menu button is clicked
+            menuToggle.addEventListener("click", function(e) {
+                e.stopPropagation(); // Prevent event from bubbling
+                sidebar.classList.toggle("active");
+                content.classList.toggle("shifted");
+            });
+            
+            // Close sidebar when clicking outside
+            document.addEventListener("click", function(e) {
+                if (!sidebar.contains(e.target) && e.target !== menuToggle && window.innerWidth <= 768) {
+                    sidebar.classList.remove("active");
+                    content.classList.remove("shifted");
+                }
+            });
+            
+            // Handle window resize events
+            window.addEventListener("resize", function() {
+                if (window.innerWidth > 768) {
+                    sidebar.classList.remove("active");
+                    content.classList.remove("shifted");
+                }
+            });
+        }
+    }   
+        
+    //Fetch and display active surveys from the server.  
     async function fetchActiveSurveys() {
          try {
                const response = await fetch(`${API_BASE_URL}/admin/surveys/active`);

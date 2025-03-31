@@ -1,3 +1,5 @@
+/* Google font style */
+
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Amaranth&family=Concert+One&family=Mochiy+Pop+One&family=Montserrat:wght@100..900&family=Pacifico&family=Permanent+Marker&family=Sixtyfour+Convergence&family=Ubuntu&display=swap');
 
 
@@ -136,42 +138,13 @@ th, td {
 
 
 /* Responsive Design */
-@media screen and (max-width: 1024px) {
-    .sidebar {
-        width: 200px;
-    }
-    
-    .main-content {
-        margin-left: 220px;
-        width: calc(100% - 220px);
-    }
-}
-
-@media screen and (max-width: 768px) {
-    body {
-        flex-direction: column;
-    }
-
+@media (max-width: 768px) {
     .sidebar {
         width: 100%;
         height: auto;
         position: relative;
+        padding: 10px;
         text-align: center;
-        padding-bottom: 15px;
-    }
-
-    .sidebar ul {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .sidebar ul li {
-        margin: 5px;
-    }
-
-    .sidebar ul li a {
-        padding: 8px;
     }
 
     .main-content {
@@ -182,7 +155,7 @@ th, td {
 
     .filters {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
     }
 
     table {
@@ -192,30 +165,16 @@ th, td {
     }
 }
 
-@media screen and (max-width: 480px) {
-    h1, h2 {
-        font-size: 1.5rem;
+@media (max-width: 500px) {
+    .sidebar ul li {
+        text-align: center;
     }
 
     button {
         width: 100%;
-        padding: 12px;
     }
 
-    .filters {
-        flex-direction: column;
-    }
-
-    select {
+    input, select {
         width: 100%;
-        padding: 8px;
-    }
-
-    table {
-        font-size: 0.9rem;
-    }
-
-    th, td {
-        padding: 6px;
     }
 }

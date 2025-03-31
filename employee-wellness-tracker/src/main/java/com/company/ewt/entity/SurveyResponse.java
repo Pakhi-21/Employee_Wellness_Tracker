@@ -69,7 +69,7 @@ public class SurveyResponse {
                 total += Double.parseDouble(response.trim());
                 count++;
             } catch (NumberFormatException e) {
-                // Log error if needed
+                
             }
         }
 

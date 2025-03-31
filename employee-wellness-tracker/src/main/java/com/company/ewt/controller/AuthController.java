@@ -17,7 +17,8 @@ public class AuthController {
 
     @Autowired
     private EmployeeService employeeService;
-
+    
+    //create anew user api
     @PostMapping("/register")
     public Map<String, String> register(@RequestBody Employee employee) {
         employeeService.registerEmployee(employee);
@@ -25,7 +26,8 @@ public class AuthController {
         response.put("message", "User registered successfully!");
         return response;
     }
-
+    
+    //login user api
     @PostMapping("/login")
     public Map<String, Object> login(@RequestBody Map<String, String> loginData) {
         Optional<Employee> employee = employeeService.loginEmployee(loginData.get("email"), loginData.get("password"));

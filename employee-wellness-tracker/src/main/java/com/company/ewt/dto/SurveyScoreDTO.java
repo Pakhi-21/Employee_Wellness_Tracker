@@ -1,6 +1,4 @@
 package com.company.ewt.dto;
-
-
 import java.time.LocalDateTime;
 
 import lombok.Data;

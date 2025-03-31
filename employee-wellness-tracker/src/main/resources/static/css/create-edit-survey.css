@@ -108,8 +108,14 @@ button:hover {
 
 
 /* Responsive Design */
+
 @media (max-width: 500px) {
     .container {
-        width: 90%;
+        width: 95%;
+        padding: 15px;
+    }
+    input, textarea, select, button {
+        font-size: 14px;
+        padding: 8px;
     }
 }

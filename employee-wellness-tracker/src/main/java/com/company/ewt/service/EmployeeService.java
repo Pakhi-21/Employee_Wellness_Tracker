@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import com.company.ewt.entity.Employee;
 import com.company.ewt.repository.EmployeeRepository;
 import org.mindrot.jbcrypt.BCrypt;
-
 import java.util.Optional;
 import java.util.List;
 
