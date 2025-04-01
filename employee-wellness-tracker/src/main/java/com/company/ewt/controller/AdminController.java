@@ -30,6 +30,14 @@ public class AdminController {
         return ResponseEntity.ok(employee);
     }
 
+
+    // Get employees with survey responses
+    @GetMapping("/employees/survey-responses")
+    public ResponseEntity<List<Employee>> getEmployeesWithSurveyResponses() {
+        List<Employee> employees = employeeService.getEmployeesWithSurveyResponses();
+        return ResponseEntity.ok(employees);
+    }
+
     // Create a new employee
     @PostMapping("/employees")
     public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {

@@ -7,6 +7,7 @@ import com.company.ewt.entity.Employee;
 import com.company.ewt.repository.EmployeeRepository;
 import org.mindrot.jbcrypt.BCrypt;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import java.util.List;
 
 @Service
@@ -35,6 +36,14 @@ public class EmployeeService {
     //get all employee
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
+    }
+
+    // new method to filter employees with survey responses
+    public List<Employee> getEmployeesWithSurveyResponses() {
+        return employeeRepository.findAll()
+                .stream()
+                .filter(emp -> emp.getSurveyResponses() != null && !emp.getSurveyResponses().isEmpty())
+                .collect(Collectors.toList());
     }
 
     // get employee by id
