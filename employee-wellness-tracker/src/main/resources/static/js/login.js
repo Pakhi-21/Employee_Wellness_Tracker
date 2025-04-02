@@ -1,9 +1,8 @@
 
 const signin = document.getElementById("signinBtn");
 
-// Add an event listener for  sign-in
 signin.addEventListener("click", async () => {
-    // Get user input values
+
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 

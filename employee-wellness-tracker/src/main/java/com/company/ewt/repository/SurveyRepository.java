@@ -7,9 +7,10 @@ import com.company.ewt.entity.Survey;
 
 import java.util.*;
 
-// for interact with database
+
 @Repository
 public interface SurveyRepository extends JpaRepository<Survey,Long>{
+    
     //fetch only active surveys
     List<Survey> findByStatusTrue();
     

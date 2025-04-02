@@ -1,4 +1,5 @@
 const API_BASE_URL = "http://localhost:8080/api";
+const logoutbtn=document.getElementById("logout");
 
 // Get user ID from session storage
 const userId = sessionStorage.getItem("userId");
@@ -21,6 +22,7 @@ const userId = sessionStorage.getItem("userId");
         
         // Only add event listeners if menu toggle exists
         if (menuToggle) {
+
             // Toggle sidebar when menu button is clicked
             menuToggle.addEventListener("click", function(e) {
                 e.stopPropagation(); // Prevent event from bubbling
@@ -50,11 +52,27 @@ const userId = sessionStorage.getItem("userId");
     async function fetchActiveSurveys() {
          try {
                const response = await fetch(`${API_BASE_URL}/admin/surveys/active`);
-               const surveys = await response.json();
-               console.log("Active Surveys:", surveys);
+               let surveys = await response.json();
+               
+                // Fetch past surveys submitted by the user
+                const pastResponse = await fetch(`${API_BASE_URL}/responses/employee/${userId}`);
+                const pastSurveys = await pastResponse.json();
+ 
+                // Get survey IDs that the user has already submitted
+                const submittedSurveyIds = new Set(pastSurveys.map(survey => survey.survey.id));
+                
+                // Filter active surveys to remove already submitted ones
+                surveys = surveys.filter(survey => !submittedSurveyIds.has(survey.id))
+ 
 
                const surveyContainer = document.getElementById("survey-container");
                surveyContainer.innerHTML = ""; // Clear previous surveys
+
+               if (surveys.length === 0) {
+                // If no active surveys are available, show a message
+                surveyContainer.innerHTML = `<h3 class="no-surveys">No active surveys available at the moment. Please check later.</h3>`;
+                return; // Exit function
+               }
 
                surveys.forEach(survey => {
                const surveyCard = document.createElement("div");
@@ -86,10 +104,9 @@ const userId = sessionStorage.getItem("userId");
             try {
                 const response = await fetch(`${API_BASE_URL}/responses/employee/${userId}`);
                 const pastSurveys = await response.json();
-                console.log("Past Surveys:", pastSurveys);
 
                 const pastSurveyContainer = document.getElementById("past-survey-container");
-                pastSurveyContainer.innerHTML = ""; // Clear previous surveys
+                pastSurveyContainer.innerHTML = ""; 
 
                 pastSurveys.forEach(survey => {
                     const surveyCard = document.createElement("div");
@@ -110,7 +127,7 @@ const userId = sessionStorage.getItem("userId");
             }
         }
         
-        //check if the user can edit thesurvey
+     //check if the user can edit thesurvey
     async function editSurvey(responseId) {
             try {
            const response = await fetch(`${API_BASE_URL}/responses/${responseId}`);
@@ -132,9 +149,8 @@ const userId = sessionStorage.getItem("userId");
             
         }
 
-        //delete the past survey response
-
-        async function deleteSurvey(responseId) {
+    //delete the past survey response
+    async function deleteSurvey(responseId) {
             try {
             const response = await fetch(`http://localhost:8080/api/responses/${responseId}`, {
                 method: 'DELETE',
@@ -156,8 +172,7 @@ const userId = sessionStorage.getItem("userId");
         }  
         
         // Logout the user by clearing session storage and redirecting to login page.
-        function logout() {
-            sessionStorage.removeItem("userId"); 
-            alert("You have been logged out.");
-            window.location.href = "/index.html";
-        }
+        logoutbtn.addEventListener("click", () => {
+            alert("Logging out...");
+            window.location.href = "login.html";
+        });

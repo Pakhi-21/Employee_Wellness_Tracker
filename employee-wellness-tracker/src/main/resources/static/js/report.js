@@ -37,6 +37,7 @@ function fetchEmployeeReport(employeeId) {
         .catch(error => console.error("Error fetching report:", error));
 }
 
+//show response on user overall wellness score
 function setWellnessMessage(employeeName, score) {
     let message = "";
     let messageClass = "";

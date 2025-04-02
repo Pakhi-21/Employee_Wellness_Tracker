@@ -1,5 +1,4 @@
 /* Google font style */
-
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Amaranth&family=Concert+One&family=Mochiy+Pop+One&family=Montserrat:wght@100..900&family=Pacifico&family=Permanent+Marker&family=Sixtyfour+Convergence&family=Ubuntu&display=swap');
 
 
@@ -125,7 +124,6 @@ th, td {
 
 
 /* for forms */
-
 #editEmployeeForm, #employeeForm  {
     display:none;
     padding: 10px;

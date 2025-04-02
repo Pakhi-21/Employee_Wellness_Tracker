@@ -35,11 +35,8 @@ public class Employee {
     private String password;
 
     private String department;
-
     private String location;
-
     private boolean isAdmin = false; 
-
     
     //for delete cascade
     @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)

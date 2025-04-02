@@ -115,6 +115,19 @@ button:hover {
 }
 
 
+footer {
+    width: 100%;
+    background: #157F7F;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
 /* Responsive Design */
 @media (max-width: 480px) {
     .navbar {

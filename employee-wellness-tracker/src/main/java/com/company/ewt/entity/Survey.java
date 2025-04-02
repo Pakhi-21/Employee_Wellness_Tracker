@@ -25,11 +25,7 @@ public class Survey {
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-
-    
-    private LocalDateTime startDate;
-
-    
+    private LocalDateTime startDate; 
     private LocalDateTime endDate;
 
     private boolean status; // Active surveys only should be visible

@@ -3,6 +3,7 @@ const API_BASE_URL = "http://localhost:8080/api/admin";
         const addEmployeeForm = document.getElementById("addEmployeeForm");
         const employeeFormContainer=document.getElementById("employeeForm");
         const toggle=document.getElementById("toggle");
+        const logoutbtn=document.getElementById("logout");
 
         // Load employees when the page loads
         document.addEventListener("DOMContentLoaded", fetchEmployees);
@@ -110,13 +111,7 @@ const API_BASE_URL = "http://localhost:8080/api/admin";
 
         function openSurveyPage() {
             window.location.href = "admin-survey.html";
-        }
-
-        function logout() {
-            // Perform logout action (clear session, redirect)
-            alert("Logging out...");
-            window.location.href = "index.html";
-        }
+        }  
 
         function toggleForm() {
         employeeFormContainer.style.display = employeeFormContainer.style.display === "none" ? "block" : "none";
@@ -126,4 +121,10 @@ const API_BASE_URL = "http://localhost:8080/api/admin";
         //cancel btn
         cancelBtn.addEventListener("click", () => {
         document.getElementById("editEmployeeForm").style.display = "none";
+        });
+        
+        //logout btn
+        logoutbtn.addEventListener("click", () => {
+            alert("Logging out...");
+            window.location.href = "login.html";
         });

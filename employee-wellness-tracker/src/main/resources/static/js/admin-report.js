@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("departmentFilter").addEventListener("change", applyFilters);
     document.getElementById("locationFilter").addEventListener("change", applyFilters);
 });
-
-let employeesData = []; // Store fetched employee data
+// Store fetched employee data
+let employeesData = []; 
 
 async function fetchEmployees() {
     try {

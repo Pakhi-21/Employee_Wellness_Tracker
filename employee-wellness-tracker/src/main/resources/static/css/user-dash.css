@@ -144,6 +144,13 @@ h2{
     margin: 20px auto;
 }
 
+.no-surveys {
+    text-align: center;
+    font-size: 18px;
+    color: #888;
+    margin-top: 20px;
+}
+
 /* Responsive Design*/
 
 /* Large tablets and small desktops */
